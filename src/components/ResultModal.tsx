@@ -26,12 +26,15 @@ const generatePossibleWords = (
   wrongOrderLetters: string[],
   wrongLetters: string[]
 ): string[] => {
+  const filteredIncludedLetters = [...wrongOrderLetters, ...matchedLetters].filter(word => !!word);
+  const filteredWords = words.filter(word => filteredIncludedLetters.every(includedLetter => word.includes(includedLetter)));
+
   const totalWrongOrderLetterArray = wrongOrderLetters.length / 5;
   const splittedWrongOrderLetters = [
     ...new Array(totalWrongOrderLetterArray),
   ].map((_, idx) => wrongOrderLetters.slice(idx * 5, idx * 5 + 5));
 
-  const possibleWords = words.filter((word) => {
+  const possibleWords = filteredWords.filter((word) => {
     let isExcluded = false;
 
     if (wrongLetters.length > 0) {
@@ -64,10 +67,6 @@ const generatePossibleWords = (
         }
         return word[index] === matchedLetter;
       });
-    }
-
-    if (word === "comel") {
-      console.log("ada", !isExcluded, isIncluded, isSamePosition);
     }
 
     return !isExcluded && isIncluded && isSamePosition;
