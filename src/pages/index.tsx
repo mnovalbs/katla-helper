@@ -16,7 +16,7 @@ import ResultModal from "components/ResultModal";
 import Head from "next/head";
 
 const Home: NextPage = () => {
-  const [matchedLetters, setMatchedLetters] = useState(["", "", "m", "", "a"]);
+  const [matchedLetters, setMatchedLetters] = useState(["", "", "", "", ""]);
   const [wrongOrderLetters, setWrongOrderLetters] = useState([
     "",
     "",
